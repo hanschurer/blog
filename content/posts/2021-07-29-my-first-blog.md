@@ -6,8 +6,8 @@ tags:
   - 刷题
   - Leetcode
 image: "https://source.unsplash.com/kkdzHCrHjgU/1600x900"
-slug: "/foo/bar/he-tang-yue-se/"
-noComments: true
+slug: "/myfirstblog/"
+noComments: false
 ---
 
 Test
