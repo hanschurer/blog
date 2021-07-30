@@ -10,4 +10,4 @@ slug: "/myfirstblog/"
 noComments: false
 ---
 
-Test
+简单介绍下博主背景，UCL在读知识，信息和数据科学硕士。目前希望在伦敦找到一份工作。
