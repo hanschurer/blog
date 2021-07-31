@@ -32,20 +32,20 @@ Open brackets must be closed in the correct order.
 
 
 ***
-关键点：
+关键点
 ----
 >1. 求和转换为求差
 >2. 借助 Map 结构将数组中每个元素及其索引相互对应
 >3. 以空间换时间，将查找时间从 O(N) 降低到 O(1)
 
-知识点：
+知识点
 ----
 >- new Map() —— 创建 map。
 >- map.set(key, value) —— 根据键存储值。
 >- map.get(key) —— 根据键来返回值，如果 map 中不存在对应的 key，则返回 undefined。
 >- map.has(key) —— 如果 key 存在则返回 true，否则返回 false。
 
-注意点:
+注意点
 ----
 >1. 判断map中是否有diff应该在map.set之前。
 >2. 因为是求差，所以应该是target减去nums中的每个元素
