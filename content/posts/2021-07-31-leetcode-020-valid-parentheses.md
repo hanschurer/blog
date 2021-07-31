@@ -52,7 +52,7 @@ Open brackets must be closed in the correct order.
 >3. 因为问题最后输出的是元素的索引，为了方便起见，将map的key设置为nums中的每一个元素，将他们的value设置为他们的index。这同样有利于用map的一些内置函数进行操作，例如map.has(), map.get()等。
 
 ***
-代码：
+代码
 ----
 
 ```js
