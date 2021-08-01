@@ -29,27 +29,31 @@ An input string is valid if:
 Open brackets must be closed by the same type of brackets.
 Open brackets must be closed in the correct order.
  
-
+栈（stack）
 
 ***
 关键点
 ----
->1. 求和转换为求差
->2. 借助 Map 结构将数组中每个元素及其索引相互对应
->3. 以空间换时间，将查找时间从 O(N) 降低到 O(1)
+> 栈的基本特点和操作, 可以用数组来模拟栈
+
+使用栈，遍历输入字符串
+如果当前字符为左半边括号时，则将其压入栈中
+如果遇到右半边括号时，分类讨论：
+1. 取出栈最后一个左括号元素，如此时右括号为对应的左半边括号匹配成功，继续循环
+2. 若不为对应的左半边括号，反之返回 false
+3. 若最后栈不为空，则直接返回 false
 
 知识点
 ----
->- new Map() —— 创建 map。
->- map.set(key, value) —— 根据键存储值。
->- map.get(key) —— 根据键来返回值，如果 map 中不存在对应的 key，则返回 undefined。
->- map.has(key) —— 如果 key 存在则返回 true，否则返回 false。
+>- arr.push(...items) —— 从尾端添加元素，
+>- arr.pop() —— 从尾端提取元素，
+>- arr.shift() —— 从首端提取元素，
+>- arr.unshift(...items) —— 从首端添加元素。
+>- arr.includes(item, from) —— 从索引 from 开始搜索 item，如果找到则返回 true（译注：如果没找到，则返回 false）
 
 注意点
 ----
->1. 判断map中是否有diff应该在map.set之前。
->2. 因为是求差，所以应该是target减去nums中的每个元素
->3. 因为问题最后输出的是元素的索引，为了方便起见，将map的key设置为nums中的每一个元素，将他们的value设置为他们的index。这同样有利于用map的一些内置函数进行操作，例如map.has(), map.get()等。
+stack.pop() 方法会移除最后一个元素并返回这个元素。这个方法可以用来将匹配的括号移除而仅仅在stack中留下未匹配的括号。 我们此时再将所遍历的字符与mapper中的所pop出的左括号对应的右括号做对比。如果不符合mapper中的左右括号的规则则返回失败。如果最后stack中还有元素，则说明还有括号没有匹配成功也返回失败。 只有当stack为空的情况下，返回成功，证明所有括号匹配正确。需要注意的是，最后判断栈为空的语句需在遍历循环体之外，最后在进行判断以及返回。
 
 ***
 代码
@@ -57,20 +61,31 @@ Open brackets must be closed in the correct order.
 
 ```js
 /**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
+ * @param {string} s
+ * @return {boolean}
  */
-var twoSum = function(nums, target) {
-    let map=new Map();//创建一个Map结构
-    for(let i=0; i<nums.length; i++){
-        //求和转换为求差, target>nums[i] 故用减法
-        let diff=target-nums[i];
-        if(map.has(diff)){ //检查是否存在值为diff的key
-            return [map.get(diff),i] //如果有，返回一个数组，第一个是当前元素的索引，第二个是map中key为diff的索引
-        }
-        //借助 Map 结构将数组中每个元素(Key)及其索引(value)相互对应
-        map.set(nums[i],i);
+var isValid = function(s) {
+    let valid=true;
+    const stack=[] //定义一个stack
+    const mapper={ //定义一个左右括号所对应的对象
+        '(':')',
+        '{':'}',
+        '[':']'
     }
+    //遍历字符串
+    for(let i in s){
+        const v=s[i] //将字符串中每单个字符存储到变量v
+        //如果字符串是左括号则压入栈中
+        if(['(','{','['].includes(v)){
+            stack.push(v)
+        }else{ //如果是右括号，则分类讨论
+            const lastleft=stack.pop() //将stack中最后一个元素移除并存储到变量lastleft中
+            if(v!==mapper[lastleft]){ //如果这一右括号的元素不是最后一个左括号所对应的右括号
+                return false //返回false
+            }
+        }
+    }
+        if(stack.length>0)return false //如果stack中元素大于0这意味着栈中还有元素 则返回false   
+        return valid //如果栈中没有任何元素，说明所有括号都匹配成功返回 true
 };
-
+```
