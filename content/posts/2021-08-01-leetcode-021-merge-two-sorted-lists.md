@@ -1,34 +1,25 @@
 ---
-title: Leetcode-020-有效的括号 (Valid Parentheses)
-description: Leetcode020有效的括号的解题思路
+title: Leetcode-021-合并两个有序链表 (Merge Two Sorted Lists)
+description: Leetcode021合并两个有序链表的解题思路
 tags:
   - 刷题
   - Leetcode
   - 栈
-image: "https://tva1.sinaimg.cn/large/007S8ZIlly1ghltyb2lpvg30qo0f0n2n.gif"
-slug: "/leetcode-valid-parentheses/"
+image: "https://assets.leetcode.com/uploads/2020/10/03/merge_ex1.jpg"
+slug: "/leetcode-merge-two-sorted-lists/"
 noComments: false
 ---
 
 两数之和
 ====
 #### 题目描述
-[链接](https://leetcode-cn.com/problems/valid-parentheses)
+[链接](https://leetcode-cn.com/problems/merge-two-sorted-lists)
 
-给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
+将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
 
-有效字符串需满足：
-左括号必须用相同类型的右括号闭合。
-左括号必须以正确的顺序闭合。
+Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.
 
-
-Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
-
-An input string is valid if:
-Open brackets must be closed by the same type of brackets.
-Open brackets must be closed in the correct order.
-
-
+ 
 ***
 关键点
 ----
