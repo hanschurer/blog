@@ -4,7 +4,7 @@ description: Leetcode020有效的括号的解题思路
 tags:
   - 刷题
   - Leetcode
-  - 栈
+  -
 image: "https://tva1.sinaimg.cn/large/007S8ZIlly1ghltyb2lpvg30qo0f0n2n.gif"
 slug: "/leetcode-valid-parentheses/"
 noComments: false
@@ -77,8 +77,8 @@ var isValid = function(s) {
         if(['(','{','['].includes(v)){
             stack.push(v)
         }else{ //如果是右括号，则分类讨论
-            const lastleft=stack.pop() //将stack中最后一个元素移除并存储到变量lastleft中
-            if(v!==mapper[lastleft]){ //如果这一右括号的元素不是最后一个左括号所对应的右括号
+            const peak=stack.pop() //将stack中最后一个元素移除并存储到变量peak中
+            if(v!==mapper[peak]){ //如果这一右括号的元素不是最后一个左括号所对应的右括号
                 return false //返回false
             }
         }

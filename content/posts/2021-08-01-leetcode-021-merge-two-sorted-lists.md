@@ -5,6 +5,7 @@ tags:
   - 刷题
   - Leetcode
   - 栈
+  - 链表
 image: "https://assets.leetcode.com/uploads/2020/10/03/merge_ex1.jpg"
 slug: "/leetcode-merge-two-sorted-lists/"
 noComments: false
@@ -23,26 +24,28 @@ Merge two sorted linked lists and return it as a sorted list. The list should be
 ***
 关键点
 ----
-> 栈的基本特点和操作, 可以用数组来模拟栈
-
-使用栈，遍历输入字符串
-如果当前字符为左半边括号时，则将其压入栈中
-如果遇到右半边括号时，分类讨论：
-1. 取出栈最后一个左括号元素，如此时右括号为对应的左半边括号匹配成功，继续循环
-2. 若不为对应的左半边括号，反之返回 false
-3. 若最后栈不为空，则直接返回 false
+本题可以使用递归来解，将两个链表头部较小的一个与剩下的元素合并，并返回排好序的链表头，当两条链表中的一条为空时终止递归。
 
 知识点
 ----
->- arr.push(...items) —— 从尾端添加元素，
->- arr.pop() —— 从尾端提取元素，
->- arr.shift() —— 从首端提取元素，
->- arr.unshift(...items) —— 从首端添加元素。
->- arr.includes(item, from) —— 从索引 from 开始搜索 item，如果找到则返回 true（译注：如果没找到，则返回 false）
+
+**单链表 [Linked List]**：由各个内存结构通过一个 Next 指针链接在一起组成，每一个内存结构都存在后继内存结构【链尾除外】，内存结构由数据域和 Next 指针域组成。
+
+单链表实现图示：
+![img](https://upload-images.jianshu.io/upload_images/1411747-464ee32fe3ea830d.png?imageMogr2/auto-orient/strip|imageView2/2/w/804/format/webp)
+文字解析：
+Data 数据 + Next 指针，组成一个单链表的内存结构 ；
+第一个内存结构称为 链头，最后一个内存结构称为 链尾；
+链尾的 Next 指针设置为 NULL [指向空]；
+单链表的遍历方向单一【只能从链头一直遍历到链尾】
 
 注意点
 ----
-stack.pop() 方法会移除最后一个元素并返回这个元素。这个方法可以用来将匹配的括号移除而仅仅在stack中留下未匹配的括号。 我们此时再将所遍历的字符与mapper中的所pop出的左括号对应的右括号做对比。如果不符合mapper中的左右括号的规则则返回失败。如果最后stack中还有元素，则说明还有括号没有匹配成功也返回失败。 只有当stack为空的情况下，返回成功，证明所有括号匹配正确。需要注意的是，最后判断栈为空的语句需在遍历循环体之外，最后在进行判断以及返回。
+首先设置临界条件，也就是递归终结条件，即两条链表中有一条为空则终止递归。返回相对的那个链表。
+
+***l1 l2分别是头指针***  
+当l1的value小于l2时，取出的是较小的value，故剩余的链表应该是l2的所有value和l1第一个val的下一个value相结合。
+需要注意的是最后返回的应该是含较小值的那个列表。
 
 ***
 代码
@@ -50,31 +53,28 @@ stack.pop() 方法会移除最后一个元素并返回这个元素。这个方�
 
 ```js
 /**
- * @param {string} s
- * @return {boolean}
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
  */
-var isValid = function(s) {
-    let valid=true;
-    const stack=[] //定义一个stack
-    const mapper={ //定义一个左右括号所对应的对象
-        '(':')',
-        '{':'}',
-        '[':']'
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function(l1, l2) {
+    if(l1 == null) return l2
+    if(l2 == null) return l1
+    //若l1 = [1,2,3] L2 = [2,3,4]
+    if(l1.val<l2.val){ //l1.val =1 l2.val=2
+        l1.next= mergeTwoLists(l1.next,l2) //将较小的val提取出来作为第一个元素 剩余链表做一个合并操作，内容是l1的剩余元素和l2的所有元素
+        return l1
+    }else{
+        l2.next= mergeTwoLists(l1,l2.next)
+        return l2
     }
-    //遍历字符串
-    for(let i in s){
-        const v=s[i] //将字符串中每单个字符存储到变量v
-        //如果字符串是左括号则压入栈中
-        if(['(','{','['].includes(v)){
-            stack.push(v)
-        }else{ //如果是右括号，则分类讨论
-            const lastleft=stack.pop() //将stack中最后一个元素移除并存储到变量lastleft中
-            if(v!==mapper[lastleft]){ //如果这一右括号的元素不是最后一个左括号所对应的右括号
-                return false //返回false
-            }
-        }
-    }
-        if(stack.length>0)return false //如果stack中元素大于0这意味着栈中还有元素 则返回false   
-        return valid //如果栈中没有任何元素，说明所有括号都匹配成功返回 true
 };
+
 ```
