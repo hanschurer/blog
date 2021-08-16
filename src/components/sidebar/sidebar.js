@@ -22,14 +22,9 @@ const Sidebar = ({ toc }) => {
               label
             }
             social {
-              douban
               email
-              facebook
               github
-              instagram
               linkedin
-              rss
-              telegram
               twitter
               youtube
             }

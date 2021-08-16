@@ -10,7 +10,7 @@ slug: "/leetcode-valid-parentheses/"
 noComments: false
 ---
 
-两数之和
+有效的括号
 ====
 #### 题目描述
 [链接](https://leetcode-cn.com/problems/valid-parentheses)
@@ -86,4 +86,28 @@ var isValid = function(s) {
         if(stack.length>0)return false //如果stack中元素大于0这意味着栈中还有元素 则返回false   
         return valid //如果栈中没有任何元素，说明所有括号都匹配成功返回 true
 };
+```
+
+```python
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack=[]
+        mapper={'{':'}','[':']','(':')'}
+        balanced=True
+        
+        for i in s:
+            if i in mapper:
+                stack.append(i)
+            else:
+                if len(stack)!=0:
+                    peak=stack.pop()
+                    if i!=mapper[peak]:
+                        return False
+                else:
+                    return False
+        
+        if len(stack)>0: return False
+
+        return balanced
+
 ```

@@ -11,7 +11,7 @@ slug: "/leetcode-merge-two-sorted-lists/"
 noComments: false
 ---
 
-两数之和
+合并两个有序链表
 ====
 #### 题目描述
 [链接](https://leetcode-cn.com/problems/merge-two-sorted-lists)
