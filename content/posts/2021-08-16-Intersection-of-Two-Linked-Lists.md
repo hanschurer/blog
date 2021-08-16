@@ -6,7 +6,7 @@ tags:
   - Leetcode
   - 双指针
   - 链表
-image: "https://pic.leetcode-cn.com/1628662967-RLmciV-2.png"
+image: "https://sm.ms/image/XB854bdU3lLVwNG"
 slug: "/Intersection-of-Two-Linked-Lists/"
 noComments: false
 ---
@@ -25,8 +25,8 @@ Given the heads of two singly linked-lists headA and headB, return the node at w
 ***
 关键点
 ----
-![img](https://pic.leetcode-cn.com/1628662967-RLmciV-2.png)
-![img](https://pic.leetcode-cn.com/1628662688-ZdSYRM-1.png)
+![img](https://sm.ms/image/XB854bdU3lLVwNG)
+![img](https://sm.ms/image/d8X7Nf2jgqVmKxk)
 
 
 知识点
