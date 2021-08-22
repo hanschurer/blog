@@ -21,7 +21,7 @@ module.exports = {
       { url: "/tags/", label: "标签" },
       { url: "/about", label: "About" },
     ],
-    footerHTML: `© 2021`,
+    footerHTML: `© 2021 Power by <a href="https://www.gatsbyjs.com/">Gatsby</a> Theme <a href="https://github.com/keithnull/gatsby-starter-breeze">Breeze</a> `,
     dateFormat: `YYYY-MM-DD`,
     language: `zh`,
   },

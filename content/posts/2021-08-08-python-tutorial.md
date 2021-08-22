@@ -1,6 +1,6 @@
 ---
 title: Python不完全指北
-description: 一些关于Python的知识点
+description: 一些关于Python的知识点，记录一下以防自己忘记。
 tags:
   - Javascript
 image: "https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/119518748/original/48dab812d165b94ed6899bc8702da412be377800/code-web-apps-and-pages-using-html5-scss-js-es6-vue-js-nuxt-js.jpg"

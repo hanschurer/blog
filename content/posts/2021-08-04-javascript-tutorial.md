@@ -1,5 +1,5 @@
 ---
-title: JavaScript基本特征
+title: JavaScript不完全指北
 description: JavaScript基本知识
 tags:
   - Javascript

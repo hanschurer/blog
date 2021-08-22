@@ -1,6 +1,6 @@
 ---
 title: Leetcode-160-相交链表 (Intersection of Two Linked Lists)
-description: Leetcode026 相交链表解题思路
+description: Leetcode160 相交链表解题思路
 tags:
   - 刷题
   - Leetcode
