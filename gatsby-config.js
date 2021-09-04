@@ -17,8 +17,8 @@ module.exports = {
       youtube: "#",
     },
     sidebarMenu: [
-      { url: "/archive/", label: "归档" },
-      { url: "/tags/", label: "标签" },
+      { url: "/archive/", label: "Archive" },
+      { url: "/tags/", label: "Tags" },
       { url: "/about", label: "About" },
     ],
     footerHTML: `© 2021 Power by <a href="https://www.gatsbyjs.com/">Gatsby</a> Theme <a href="https://github.com/keithnull/gatsby-starter-breeze">Breeze</a> `,
