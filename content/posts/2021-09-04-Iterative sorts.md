@@ -11,6 +11,8 @@ noComments: true
 ## 冒泡排序
 
 Compare two items in an array that are next to each other. If they're out of order (that is, the larger one comes first in the array) swap them. 
+
+![img](https://btholt.github.io/complete-intro-to-computer-science/e164c2436ed5486ed13e54135a1d009a/bubblesort.gif)
 ```js
 
 function bubbleSort(nums) {
@@ -78,6 +80,7 @@ End of the array, did we swap anything? No. List is sorted.
 With insertion sort, you treat the first part of your list as sorted and the second part of your list as unsorted. Our algorithm will start by saying everything the 1 index (so just index 0, the first element) is sorted and everything after unsorted. By definition a list of one is already sorted. From there, we start with the next element in the list (in this case, the 1 index, the second element) and loop backwards over our sorted list, asking "is the element that I'm looking to insert larger than what's here? If not, you work your way to the back of the array. If you land at the first element of the sorted part of the list, what you have is smaller than everything else and you put it at the start. You then repeat this until you've done it over the whole list!
 
 
+![img](https://btholt.github.io/complete-intro-to-computer-science/e1c75fd04db2c886c086edd156ba5ff2/insertionsort.gif)
 ```js
 function insertionSort(nums) {
   for (let i = 1; i < nums.length; i++) {
