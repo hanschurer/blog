@@ -3,7 +3,6 @@ backend:
   repo: hanwangxxx/blog
   branch: main # Branch to update (optional; defaults to master)
 
-publish_mode: editorial_workflow
 media_folder: static/assets
 public_folder: /assets
 
