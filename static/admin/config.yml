@@ -1,7 +1,7 @@
 backend:
   name: git-gateway
   repo: hanwangxxx/blog
-  branch: master # Branch to update (optional; defaults to master)
+  branch: main # Branch to update (optional; defaults to master)
 
 publish_mode: editorial_workflow
 media_folder: static/assets
