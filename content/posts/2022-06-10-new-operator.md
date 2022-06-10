@@ -1,10 +1,9 @@
 ---
 layout: blog
-title: new-operator
+title: New 操作符的原理
 date: 2022-06-10T13:12:58.447Z
+description: new 操作符通过执行自定义构造函数或内置对象构造函数，生成对应的对象实例。
 ---
-# New 操作符的原理
-
 ## 相关问题[​](http://febook.hzfe.org/awesome-interview/book2/js-new#%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98 "Direct link to heading")
 
 * new 操作符做了什么
