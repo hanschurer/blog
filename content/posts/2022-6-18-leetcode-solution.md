@@ -1,11 +1,12 @@
 ---
-title: Blind75 Leetcode solution
-description: 已解决的leetcode题目 
+title: Blind75-Leetcode Solution
+description: 已解决的leetcode题目
 tags:
   - 刷题
+slug: /leetcode-solution/
 image: ""
-slug: "/leetcode-solution/"
 noComments: true
+date: 2022-06-18T20:26:45.605Z
 ---
 
 ## 1. 两数之和
