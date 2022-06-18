@@ -3,11 +3,11 @@ layout: blog
 title: 原型，原型链以及继承
 date: 2022-06-06T20:56:31.290Z
 description: 深入探讨原型链和继承
+slug: "/prototype/"
 code:
   code: "function "
   lang: javascript
 tags:
-  - Design
 image: https://camo.githubusercontent.com/9a69b0f03116884e80cf566f8542cf014a4dd043fce6ce030d615040461f4e5a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f6d717971696e6766656e672f426c6f672f496d616765732f70726f746f74797065352e706e67
 ---
 ### 1. 原型
