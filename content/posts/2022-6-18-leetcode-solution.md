@@ -1,16 +1,16 @@
 ---
-title: Blind75 Leetcode solution
-description: 已解决的leetcode题目 
+title: Blind75-Leetcode Solution
+description: 已解决的leetcode题目
 tags:
   - 刷题
+slug: /leetcode-solution/
 image: ""
-slug: "/leetcode-solution/"
 noComments: true
+date: 2022-06-18T20:26:45.605Z
 ---
-
 ## 1. 两数之和
 
-``` py
+```py
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         map={}
@@ -63,6 +63,7 @@ class Solution:
 
         return balanced
 ```
+
 ## 21. 合并两个有序链表
 
 ```py
@@ -174,6 +175,7 @@ class Solution:
 ```
 
 ## 125. [验证回文串](https://leetcode.cn/problems/valid-palindrome/)
+
 ```py
 class Solution:
     def isPalindrome(self, s: str) -> bool:
@@ -250,7 +252,7 @@ class Solution:
         return root
 ```
 
-## 238. [除自身以外数组的乘积]()
+## 238. [除自身以外数组的乘积](<>)
 
 ```py
 class Solution:
@@ -292,7 +294,6 @@ class Solution:
     
         dfs(root)
         return res[0]
-
 ```
 
 ## 703. [数据流中的第 K 大元素](https://leetcode.cn/problems/kth-largest-element-in-a-stream/)
@@ -338,7 +339,7 @@ class Solution:
         return -1
 ```
 
-## 1046. [最后一块石头的重量]
+## 1046. [最后一块石头的重量](https://leetcode.cn/problems/last-stone-weight/)
 
 ```py
 class Solution:
@@ -413,3 +414,158 @@ class Solution:
             return False      
 ```
 
+## 347. [前 K 个高频元素](https://leetcode.cn/problems/top-k-frequent-elements/)
+
+```
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = {}
+        freq = [[] for i in range(len(nums) + 1)]
+        
+        for n in nums:
+            count[n] = 1 + count.get(n, 0)
+        for n, c in count.items():
+            freq[c].append(n)
+        
+        res = []
+        for i in range(len(freq) - 1, 0, -1):
+            for n in freq[i]:
+                res.append(n)
+                if len(res) == k:
+                    return res
+```
+
+## 659[. 编码和解码字符串](https://www.lintcode.com/problem/659/description)
+
+```
+class Solution:
+    """
+    @param: strs: a list of strings
+    @return: encodes a list of strings to a single string.
+    """
+    def encode(self, strs):
+        # write your code here
+        res=""
+        for i in strs:
+            res+= str(len(i))+"#"+i
+        return res
+
+    """
+    @param: str: A string
+    @return: dcodes a single string to a list of strings
+    """
+    def decode(self, str):
+        # write your code here
+        res,i=[],0
+        while i < len(str):
+            j=i
+            while str[j] != "#":
+                j+=1
+            length= int(str[i:j])
+            res.append(str[j+1:j+1+length])
+            i=j+1+length
+        return res
+```
+
+## 53. [最大子数组和](https://leetcode.cn/problems/maximum-subarray/)
+
+```
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        maxSub=nums[0]
+        curSub=0
+
+        for i in nums:
+            if curSub<0:
+                curSub=0
+            curSub+=i
+            maxSub=max(maxSub,curSub)
+        return maxSub
+```
+
+## [70. 爬楼梯](https://leetcode.cn/problems/climbing-stairs/)
+
+```
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        one=two=1
+        for i in range(n-1):
+            one,two=one+two,one
+        return one
+```
+
+## [198. 打家劫舍](https://leetcode.cn/problems/house-robber/)
+
+```
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        rob1=rob2=0
+        for i in nums:
+            rob1,rob2=rob2,max(rob1+i,rob2)
+        return rob2
+```
+
+## [15. 三数之和](https://leetcode.cn/problems/3sum/)
+
+```
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        nums.sort()
+        
+        for i, a in enumerate(nums):
+            if i > 0 and a == nums[i - 1]:
+                continue
+            
+            l, r = i + 1, len(nums) - 1
+            while l < r:
+                threeSum = a + nums[l] + nums[r]
+                if threeSum > 0:
+                    r -= 1
+                elif threeSum < 0:
+                    l += 1
+                else:
+                    res.append([a, nums[l], nums[r]])
+                    l += 1
+                    while nums[l] == nums[l - 1] and l < r:
+                        l += 1
+        return res
+```
+
+## [155. 最小栈](https://leetcode.cn/problems/min-stack/)
+
+```
+class MinStack:
+
+    def __init__(self):
+        self.stack=[]
+        self.minStack=[]
+
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        val= min(val,self.minStack[-1] if self.minStack else val)
+        self.minStack.append(val)
+
+
+    def pop(self) -> None:
+        self.stack.pop()
+        self.minStack.pop()
+
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+
+    def getMin(self) -> int:
+        return self.minStack[-1]
+
+
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(val)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
+```
