@@ -569,3 +569,180 @@ class MinStack:
 # param_3 = obj.top()
 # param_4 = obj.getMin()
 ```
+
+## [11. 盛最多水的容器](https://leetcode.cn/problems/container-with-most-water/)
+
+```
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        l,r=0,len(height)-1
+        res=0
+
+        while l<r:
+            res = max(res, min(height[l], height[r]) * (r - l))
+            if height[l]<height[r]:
+                l+=1
+            else:
+                r-=1
+        return res
+```
+
+## [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/)
+
+```
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height: return 0
+
+        l,r=0,len(height)-1
+        maxLeft,maxRight=height[l],height[r]
+        res=0
+
+        while l<r:
+            if maxLeft < maxRight:
+                l+=1
+                maxLeft=max(maxLeft,height[l])
+                res+=maxLeft-height[l]
+            
+            else:
+                r-=1
+                maxRight=max(maxRight,height[r])
+                res+=maxRight-height[r]
+        return res
+```
+
+## [74. 搜索二维矩阵](https://leetcode.cn/problems/search-a-2d-matrix/)
+
+```
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        ROWS,COLS=len(matrix), len(matrix[0])
+        top, bot= 0, ROWS-1
+        while top<=bot:
+            midrow=(top+bot)//2
+            if target > matrix[midrow][-1]:
+                top= midrow +1
+            elif target < matrix[midrow][0]:
+                bot = midrow -1
+            else:
+                break
+        
+        if not top<= bot: return False
+
+        midrow=(top+bot)//2
+        l,r=0,COLS-1
+        while l<=r:
+            m=(l+r)//2
+            if target > matrix[midrow][m]:
+                l= m+1
+            elif target< matrix[midrow][m]:
+                r= m-1
+            else:
+                return True
+        return False
+```
+
+## [875. 爱吃香蕉的珂珂](https://leetcode.cn/problems/koko-eating-bananas/)
+
+```
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        l,r=1,max(piles)
+        res=r
+        while l<=r:
+            k=(l+r)//2
+            hours=0
+            for i in piles:
+                hours+= math.ceil(i/k)
+            if hours<=h:
+                res=min(res,k)
+                r= k -1
+            else:
+                l=k+1
+        return res
+```
+
+## [110. 平衡二叉树](https://leetcode.cn/problems/balanced-binary-tree/)
+
+```
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool:
+        def dfs(root):
+            if not root: return [True, 0]
+            
+            left,right=dfs(root.left),dfs(root.right)
+            isBalanced= left[0] and right[0] and abs(left[1]-right[1]) <=1
+            return [isBalanced,1+max(left[1],right[1])]
+
+        return dfs(root)[0]
+```
+
+## [100. 相同的树](https://leetcode.cn/problems/same-tree/)
+
+```
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        if not p and not q:
+            return True
+        if not p or not q or p.val != q.val:
+            return False
+        
+        return (self.isSameTree(p.left,q.left) and self.isSameTree(p.right, q.right))
+```
+
+## [572. 另一棵树的子树](https://leetcode.cn/problems/subtree-of-another-tree/)
+
+```
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
+        if not subRoot: return True
+        if not root: return False
+        return self.isSameTree(root,subRoot) or self.isSubtree(root.left,subRoot) or self.isSubtree(root.right,subRoot)
+
+    
+    def isSameTree(self,root,subRoot):
+        if not root and not subRoot: return True
+        if subRoot and root and root.val== subRoot.val:
+            return (self.isSameTree(subRoot.left,root.left) and self.isSameTree(root.right,subRoot.right))
+        return False
+```
+
+## [235. 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+
+```
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        cur=root
+        while cur:
+            if p.val > cur.val and q.val > cur.val:
+                cur=cur.right
+            elif p.val<cur.val and q.val < cur.val:
+                cur=cur.left
+            else:
+                return cur
+```
