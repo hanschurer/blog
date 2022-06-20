@@ -8,9 +8,9 @@ image: ""
 noComments: true
 date: 2022-06-18T20:26:45.605Z
 ---
-## 1. 两数之和
+## [1. 两数之和](https://leetcode.cn/problems/two-sum/)
 
-```py
+```python
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         map={}
@@ -21,7 +21,7 @@ class Solution:
             map[v]=i
 ```
 
-## 3. 无重复字符的最长子串
+## [3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
 
 ```python
 class Solution:
@@ -39,9 +39,9 @@ class Solution:
         return res
 ```
 
-## 20. 有效的括号
+## [20. 有效的括号](https://leetcode.cn/problems/valid-parentheses/)
 
-```py
+```python
 class Solution:
     def isValid(self, s: str) -> bool:
         stack=[]
@@ -64,9 +64,9 @@ class Solution:
         return balanced
 ```
 
-## 21. 合并两个有序链表
+## [21. 合并两个有序链表](https://leetcode.cn/problems/merge-two-sorted-lists/)
 
-```py
+```python
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
@@ -95,7 +95,7 @@ class Solution:
 
 ## 36. [有效的数独](https://leetcode.cn/problems/valid-sudoku/)
 
-```py
+```python
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         row=defaultdict(set)
@@ -116,7 +116,7 @@ class Solution:
 
 ## 49. [字母异位词分组](https://leetcode.cn/problems/group-anagrams/submissions/)
 
-```py
+```python
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         ans = defaultdict(list)
@@ -131,7 +131,7 @@ class Solution:
 
 ## 104. [二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)
 
-```py
+```python
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -161,7 +161,7 @@ class Solution:
 
 ## 121.[买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/)
 
-```py
+```python
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         buy=0
@@ -176,7 +176,7 @@ class Solution:
 
 ## 125. [验证回文串](https://leetcode.cn/problems/valid-palindrome/)
 
-```py
+```python
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         l, r = 0, len(s) - 1
@@ -201,7 +201,7 @@ class Solution:
 
 ## 128. [最长连续序列](https://leetcode.cn/problems/longest-consecutive-sequence/)
 
-```py
+```python
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         nums=set(nums)
@@ -218,7 +218,7 @@ class Solution:
 
 ## 167. [两数之和 II - 输入有序数组](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
 
-```py
+```python
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         l,r=0,len(numbers)-1
@@ -235,7 +235,7 @@ class Solution:
 
 ## 226. [翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/)
 
-```py
+```python
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -254,7 +254,7 @@ class Solution:
 
 ## 238. [除自身以外数组的乘积](<>)
 
-```py
+```python
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         res=[1]*len(nums)
@@ -271,7 +271,7 @@ class Solution:
 
 ## 543. [二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree/)
 
-```py
+```python
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -298,7 +298,7 @@ class Solution:
 
 ## 703. [数据流中的第 K 大元素](https://leetcode.cn/problems/kth-largest-element-in-a-stream/)
 
-```py
+```python
 class KthLargest:
 
     def __init__(self, k: int, nums: List[int]):
@@ -324,7 +324,7 @@ class KthLargest:
 
 ## 704. [二分查找](https://leetcode.cn/problems/binary-search/)
 
-```py
+```python
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         l,r=0,len(nums)-1
@@ -341,7 +341,7 @@ class Solution:
 
 ## 1046. [最后一块石头的重量](https://leetcode.cn/problems/last-stone-weight/)
 
-```py
+```python
 class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
         stones=[-s for s in stones]
@@ -359,7 +359,7 @@ class Solution:
 
 ## 217. [存在重复元素](https://leetcode.cn/problems/contains-duplicate/submissions/)
 
-```py
+```python
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         hashset=set()
@@ -372,7 +372,7 @@ class Solution:
 
 ## 206. [反转链表](https://leetcode.cn/problems/reverse-linked-list/)
 
-```py
+```python
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
@@ -391,7 +391,7 @@ class Solution:
 
 ## 242. [有效的字母异位词](https://leetcode.cn/problems/valid-anagram/)
 
-```py
+```python
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         if len(s) != len(t): return False
@@ -416,7 +416,7 @@ class Solution:
 
 ## 347. [前 K 个高频元素](https://leetcode.cn/problems/top-k-frequent-elements/)
 
-```
+```python
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         count = {}
@@ -437,7 +437,7 @@ class Solution:
 
 ## 659[. 编码和解码字符串](https://www.lintcode.com/problem/659/description)
 
-```
+```python
 class Solution:
     """
     @param: strs: a list of strings
@@ -469,7 +469,7 @@ class Solution:
 
 ## 53. [最大子数组和](https://leetcode.cn/problems/maximum-subarray/)
 
-```
+```python
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         maxSub=nums[0]
@@ -485,7 +485,7 @@ class Solution:
 
 ## [70. 爬楼梯](https://leetcode.cn/problems/climbing-stairs/)
 
-```
+```python
 class Solution:
     def climbStairs(self, n: int) -> int:
         one=two=1
@@ -496,7 +496,7 @@ class Solution:
 
 ## [198. 打家劫舍](https://leetcode.cn/problems/house-robber/)
 
-```
+```python
 class Solution:
     def rob(self, nums: List[int]) -> int:
         rob1=rob2=0
@@ -507,7 +507,7 @@ class Solution:
 
 ## [15. 三数之和](https://leetcode.cn/problems/3sum/)
 
-```
+```python
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         res = []
@@ -534,7 +534,7 @@ class Solution:
 
 ## [155. 最小栈](https://leetcode.cn/problems/min-stack/)
 
-```
+```python
 class MinStack:
 
     def __init__(self):
@@ -572,7 +572,7 @@ class MinStack:
 
 ## [11. 盛最多水的容器](https://leetcode.cn/problems/container-with-most-water/)
 
-```
+```python
 class Solution:
     def maxArea(self, height: List[int]) -> int:
         l,r=0,len(height)-1
@@ -589,7 +589,7 @@ class Solution:
 
 ## [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/)
 
-```
+```python
 class Solution:
     def trap(self, height: List[int]) -> int:
         if not height: return 0
@@ -613,7 +613,7 @@ class Solution:
 
 ## [74. 搜索二维矩阵](https://leetcode.cn/problems/search-a-2d-matrix/)
 
-```
+```python
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         ROWS,COLS=len(matrix), len(matrix[0])
@@ -644,7 +644,7 @@ class Solution:
 
 ## [875. 爱吃香蕉的珂珂](https://leetcode.cn/problems/koko-eating-bananas/)
 
-```
+```python
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         l,r=1,max(piles)
@@ -664,7 +664,7 @@ class Solution:
 
 ## [110. 平衡二叉树](https://leetcode.cn/problems/balanced-binary-tree/)
 
-```
+```python
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -685,7 +685,7 @@ class Solution:
 
 ## [100. 相同的树](https://leetcode.cn/problems/same-tree/)
 
-```
+```python
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -704,7 +704,7 @@ class Solution:
 
 ## [572. 另一棵树的子树](https://leetcode.cn/problems/subtree-of-another-tree/)
 
-```
+```python
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -727,7 +727,7 @@ class Solution:
 
 ## [235. 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/)
 
-```
+```python
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):
