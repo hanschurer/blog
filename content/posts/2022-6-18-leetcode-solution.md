@@ -573,17 +573,73 @@ class MinStack:
 ## [11. 盛最多水的容器](https://leetcode.cn/problems/container-with-most-water/)
 
 ```
-
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        l, r = 0, len(height) - 1
-        res = 0
-        
-        while l < r:
+        l,r=0,len(height)-1
+        res=0
+
+        while l<r:
             res = max(res, min(height[l], height[r]) * (r - l))
-            if height[l] < height[r]:
-                l += 1
-            elif height[r] <= height[l]:
-                r -= 1
+            if height[l]<height[r]:
+                l+=1
+            else:
+                r-=1
         return res
+```
+
+## [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/)
+
+```
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height: return 0
+
+        l,r=0,len(height)-1
+        maxLeft,maxRight=height[l],height[r]
+        res=0
+
+        while l<r:
+            if maxLeft < maxRight:
+                l+=1
+                maxLeft=max(maxLeft,height[l])
+                res+=maxLeft-height[l]
+            
+            else:
+                r-=1
+                maxRight=max(maxRight,height[r])
+                res+=maxRight-height[r]
+        return res
+
+```
+
+## [74. 搜索二维矩阵](https://leetcode.cn/problems/search-a-2d-matrix/)
+
+```
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        ROWS,COLS=len(matrix), len(matrix[0])
+        top, bot= 0, ROWS-1
+        while top<=bot:
+            midrow=(top+bot)//2
+            if target > matrix[midrow][-1]:
+                top= midrow +1
+            elif target < matrix[midrow][0]:
+                bot = midrow -1
+            else:
+                break
+        
+        if not top<= bot: return False
+
+        midrow=(top+bot)//2
+        l,r=0,COLS-1
+        while l<=r:
+            m=(l+r)//2
+            if target > matrix[midrow][m]:
+                l= m+1
+            elif target< matrix[midrow][m]:
+                r= m-1
+            else:
+                return True
+        return False
+
 ```
