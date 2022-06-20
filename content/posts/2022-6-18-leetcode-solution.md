@@ -609,7 +609,6 @@ class Solution:
                 maxRight=max(maxRight,height[r])
                 res+=maxRight-height[r]
         return res
-
 ```
 
 ## [74. 搜索二维矩阵](https://leetcode.cn/problems/search-a-2d-matrix/)
@@ -641,7 +640,6 @@ class Solution:
             else:
                 return True
         return False
-
 ```
 
 ## [875. 爱吃香蕉的珂珂](https://leetcode.cn/problems/koko-eating-bananas/)
@@ -662,4 +660,89 @@ class Solution:
             else:
                 l=k+1
         return res
+```
+
+## [110. 平衡二叉树](https://leetcode.cn/problems/balanced-binary-tree/)
+
+```
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool:
+        def dfs(root):
+            if not root: return [True, 0]
+            
+            left,right=dfs(root.left),dfs(root.right)
+            isBalanced= left[0] and right[0] and abs(left[1]-right[1]) <=1
+            return [isBalanced,1+max(left[1],right[1])]
+
+        return dfs(root)[0]
+```
+
+## [100. 相同的树](https://leetcode.cn/problems/same-tree/)
+
+```
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        if not p and not q:
+            return True
+        if not p or not q or p.val != q.val:
+            return False
+        
+        return (self.isSameTree(p.left,q.left) and self.isSameTree(p.right, q.right))
+```
+
+## [572. 另一棵树的子树](https://leetcode.cn/problems/subtree-of-another-tree/)
+
+```
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
+        if not subRoot: return True
+        if not root: return False
+        return self.isSameTree(root,subRoot) or self.isSubtree(root.left,subRoot) or self.isSubtree(root.right,subRoot)
+
+    
+    def isSameTree(self,root,subRoot):
+        if not root and not subRoot: return True
+        if subRoot and root and root.val== subRoot.val:
+            return (self.isSameTree(subRoot.left,root.left) and self.isSameTree(root.right,subRoot.right))
+        return False
+```
+
+## [235. 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+
+```
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        cur=root
+        while cur:
+            if p.val > cur.val and q.val > cur.val:
+                cur=cur.right
+            elif p.val<cur.val and q.val < cur.val:
+                cur=cur.left
+            else:
+                return cur
 ```
