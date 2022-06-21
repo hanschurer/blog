@@ -746,3 +746,100 @@ class Solution:
             else:
                 return cur
 ```
+
+## [62. 不同路径](https://leetcode.cn/problems/unique-paths/)
+
+```python
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        dp = [[1]*n] + [[1]+[0] * (n-1) for _ in range(m-1)]
+        for i in range(1,m):
+            for j in range(1,n):
+                dp[i][j]=dp[i-1][j]+dp[i][j-1]
+        return dp[-1][-1]
+```
+
+## [1143. 最长公共子序列](https://leetcode.cn/problems/longest-common-subsequence/)
+
+```python
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        len1, len2 = len(text1)+1, len(text2)+1
+        dp = [[0 for _ in range(len1)] for _ in range(len2)] # 先对dp数组做初始化操作
+        for i in range(1, len2):
+            for j in range(1, len1): # 开始列出状态转移方程
+                if text1[j-1] == text2[i-1]:
+                    dp[i][j] = dp[i-1][j-1]+1 
+                else:
+                    dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+        return dp[-1][-1]
+```
+
+## [102. 二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/)
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        res=[]
+        q=collections.deque()
+        q.append(root)
+
+        while q:
+            qlenth=len(q)
+            level=[]
+            for i in range(qlenth):
+                node=q.popleft()
+                if node:
+                    level.append(node.val)
+                    q.append(node.left)
+                    q.append(node.right)
+            if level:
+                res.append(level)
+        return res
+```
+
+## [150. 逆波兰表达式求值](https://leetcode.cn/problems/evaluate-reverse-polish-notation/)
+
+```python
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack=[]
+        for c in tokens:
+            if c =="+":
+                stack.append(stack.pop()+stack.pop())
+            elif c == "-":
+                a,b=stack.pop(),stack.pop()
+                stack.append(b-a)
+            elif c == "/":
+                a,b=stack.pop(),stack.pop()
+                stack.append(int(b/a))
+            elif c== "*":
+                stack.append(stack.pop()*stack.pop())
+            else:
+                stack.append(int(c))
+
+        return stack[0]
+
+```
+
+## [739. 每日温度](https://leetcode.cn/problems/daily-temperatures/)
+
+```python
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        res = [0] * len(temperatures)
+        stack = [] # pair (temp,index)
+
+        for index, temp in enumerate(temperatures):
+            while stack and temp > stack[-1][0]:
+                stackTemp, stackIndx= stack.pop()
+                res[stackIndx] = (index-stackIndx)
+            stack.append([temp,index])
+        return res
+```
