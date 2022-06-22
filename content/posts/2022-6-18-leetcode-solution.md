@@ -825,7 +825,6 @@ class Solution:
                 stack.append(int(c))
 
         return stack[0]
-
 ```
 
 ## [739. 每日温度](https://leetcode.cn/problems/daily-temperatures/)
@@ -842,4 +841,79 @@ class Solution:
                 res[stackIndx] = (index-stackIndx)
             stack.append([temp,index])
         return res
+```
+
+## [22. 括号生成](https://leetcode.cn/problems/generate-parentheses/)
+
+```python
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        stack=[]
+        res=[]
+
+        def backtrack(openN,closeN):
+            if openN == closeN ==n:
+                res.append("".join(stack))
+            if openN < n:
+                stack.append('(')
+                backtrack(openN+1,closeN)
+                stack.pop()
+            if closeN<openN:
+                stack.append(')')
+                backtrack(openN,closeN+1)
+                stack.pop()
+        backtrack(0,0)
+        return res
+```
+
+## [33. 搜索旋转排序数组](https://leetcode.cn/problems/search-in-rotated-sorted-array/)
+
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        l, r = 0, len(nums) - 1
+        
+        while l <= r:
+            mid = (l + r) // 2
+            if target == nums[mid]:
+                return mid
+            
+            # left sorted portion
+            if nums[l] <= nums[mid]:
+                if target > nums[mid] or target < nums[l]:
+                    l = mid + 1
+                else:
+                    r = mid - 1
+            # right sorted portion
+            else:
+                if target < nums[mid] or target > nums[r]:
+                    r = mid - 1
+                else:
+                    l = mid + 1
+        return -1
+```
+
+#### [153. 寻找旋转排序数组中的最小值](https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/)
+
+```python
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        res=nums[0]
+        l,r=0, len(nums)-1
+
+        while l<=r:
+            if nums[l] <nums[r]:
+                res=min(res,nums[l])
+                break
+
+            mid=(l+r)//2
+            res = min(res, nums[mid])
+            if nums[mid]>=nums[l]:
+                l=mid+1
+            else:
+                r=mid-1
+        return res
+
+
+
 ```
