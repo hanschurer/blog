@@ -893,7 +893,7 @@ class Solution:
         return -1
 ```
 
-#### [153. 寻找旋转排序数组中的最小值](https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/)
+## [153. 寻找旋转排序数组中的最小值](https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/)
 
 ```python
 class Solution:
@@ -913,7 +913,43 @@ class Solution:
             else:
                 r=mid-1
         return res
+```
 
+## [424. 替换后的最长重复字符](https://leetcode.cn/problems/longest-repeating-character-replacement/)
 
+```python
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        count={}
+        res=0
+        l=0
+        for r in range(len(s)):
+            count[s[r]]=1+ count.get(s[r],0)
+            while (r-l+1)-max(count.values())>k:
+                count[s[l]]-=1
+                l+=1
+            res=max(res,r-l+1)
+        return res
 
+```
+
+## [141. 环形链表](https://leetcode.cn/problems/linked-list-cycle/)
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        f=s=head
+
+        while f and f.next:
+            f=f.next.next
+            s=s.next
+            if f == s:
+                return True
+        return False
 ```
