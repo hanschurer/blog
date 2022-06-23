@@ -930,7 +930,6 @@ class Solution:
                 l+=1
             res=max(res,r-l+1)
         return res
-
 ```
 
 ## [141. 环形链表](https://leetcode.cn/problems/linked-list-cycle/)
@@ -952,4 +951,157 @@ class Solution:
             if f == s:
                 return True
         return False
+```
+
+## [143. 重排链表](https://leetcode.cn/problems/reorder-list/)
+
+```python
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        if not head:
+            return
+        
+        mid = self.middleNode(head)
+        l1 = head
+        l2 = mid.next
+        mid.next = None
+        
+        l2 = self.reverseList(l2)
+        self.mergeList(l1, l2)
+    
+    def middleNode(self, head: ListNode) -> ListNode:
+        slow = fast = head
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+    
+    def reverseList(self, head: ListNode) -> ListNode:
+        prev = None
+        curr = head
+        while curr:
+            nextTemp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nextTemp
+        return prev
+
+    def mergeList(self, l1: ListNode, l2: ListNode):
+        while l1 and l2:
+            l1_tmp = l1.next
+            l2_tmp = l2.next
+
+            l1.next = l2
+            l1 = l1_tmp
+
+            l2.next = l1
+            l2 = l2_tmp
+
+```
+
+## [19. 删除链表的倒数第 N 个结点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        dummy = ListNode(0,head)
+        left=dummy
+        right = head
+        for i in range(n):
+            right = right.next
+        while right:
+            left=left.next
+            right=right.next
+        
+        left.next=left.next.next
+        return dummy.next
+            
+```
+
+## [23. 合并K个升序链表](https://leetcode.cn/problems/merge-k-sorted-lists/)
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+    
+        def merge(l,r):
+            if l>r:
+                return 
+            if l == r:
+                return lists[l]
+            mid = (l+r)//2
+            l1 = merge(l,mid)
+            l2 = merge(mid+1,r)
+            return mergeList(l1,l2)
+        
+
+        def mergeList(l1, l2):
+            dummy = ListNode()
+            tail = dummy
+            
+            while l1 and l2:
+                if l1.val < l2.val:
+                    tail.next = l1
+                    l1 = l1.next
+                else:
+                    tail.next = l2
+                    l2 = l2.next
+                tail = tail.next
+
+            if l1:
+                tail.next = l1
+            if l2:
+                tail.next = l2
+
+            return dummy.next
+        return merge(0,len(lists)-1)
+```
+
+## [98. 验证二叉搜索树](https://leetcode.cn/problems/validate-binary-search-tree/)
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def valid(node,left,right):
+            if not node:
+                return True
+            if not (node.val<right and node.val > left):
+                return False
+            return (valid(node.left,left,node.val) and valid(node.right, node.val, right))
+
+        return valid(root,float("-inf"), float("inf"))
+```
+
+## [230. 二叉搜索树中第K小的元素](https://leetcode.cn/problems/kth-smallest-element-in-a-bst/)
+
+```python
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        stack = []
+        while root or stack:
+            while root:
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
+            k -= 1
+            if k == 0:
+                return root.val
+            root = root.right
+
 ```
