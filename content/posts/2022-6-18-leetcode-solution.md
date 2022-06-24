@@ -996,7 +996,6 @@ class Solution:
 
             l2.next = l1
             l2 = l2_tmp
-
 ```
 
 ## [19. 删除链表的倒数第 N 个结点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
@@ -1103,5 +1102,112 @@ class Solution:
             if k == 0:
                 return root.val
             root = root.right
+```
 
+## [138. 复制带随机指针的链表](https://leetcode.cn/problems/copy-list-with-random-pointer/)
+
+```python
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+
+class Solution:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        oldToCopy={None:None}
+        cur =head
+        while cur:
+            oldToCopy[cur]=Node(cur.val)
+            cur=cur.next
+        
+        cur=head
+        while cur:
+            copy = oldToCopy[cur]
+            copy.next=oldToCopy[cur.next]
+            copy.random=oldToCopy[cur.random]
+            cur=cur.next
+        return oldToCopy[head]
+```
+
+#### [2. 两数相加](https://leetcode.cn/problems/add-two-numbers/)
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode()
+        cur = dummy
+
+        carry = 0
+        while l1 or l2 or carry:
+            v1 =l1.val if l1 else 0
+            v2 =l2.val if l2 else 0
+            # new digit
+            val = v1+v2+carry
+            carry = val //10
+            val = val %10
+            cur.next = ListNode(val)
+
+            #update pointer
+            cur=cur.next
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
+        return dummy.next
+```
+
+## [78. 子集](https://leetcode.cn/problems/subsets/)
+
+```python
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        
+        subset = []
+        def dfs(i):
+            if i >= len(nums):
+                res.append(subset.copy())
+                return
+            # decision to include nums[i]
+            subset.append(nums[i])
+            dfs(i + 1)
+            # decision NOT to include nums[i]
+            subset.pop()
+            dfs(i + 1)
+        
+        dfs(0)
+        return 
+```
+
+## [746. 使用最小花费爬楼梯](https://leetcode.cn/problems/min-cost-climbing-stairs/)
+
+```python
+
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        cost.append(0)
+        
+        for i in range(len(cost) - 3, -1, -1):
+            cost[i] += min(cost[i + 1], cost[i + 2])
+            
+        return min(cost[0], cost[1])
+```
+
+## [136. 只出现一次的数字](https://leetcode.cn/problems/single-number/)
+
+```python
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        res = 0
+        for i in nums:
+            res = res ^ i
+        return res
 ```
