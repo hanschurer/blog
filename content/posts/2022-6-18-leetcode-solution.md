@@ -1166,7 +1166,6 @@ class Solution:
 ## [78. 子集](https://leetcode.cn/problems/subsets/)
 
 ```python
-
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         res = []
@@ -1190,7 +1189,6 @@ class Solution:
 ## [746. 使用最小花费爬楼梯](https://leetcode.cn/problems/min-cost-climbing-stairs/)
 
 ```python
-
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         cost.append(0)
@@ -1210,4 +1208,95 @@ class Solution:
         for i in nums:
             res = res ^ i
         return res
+```
+
+## [567. 字符串的排列](https://leetcode.cn/problems/permutation-in-string/)
+
+```python
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        '''
+        思路：怎么判断s2的字串和s1的排列之一相等，假如排序的话，遍历s2的同时，每次都排序，总的时间复杂度太高了。
+        因此，我们采用一个有序字典来比较，由于只包含小写字母，我们采用数组来模拟有序字典，
+        这样判断s2的子串和s1的排列之一相等就很容易了。总的时间复杂度为O(n),n为s2的长度。
+        空间复杂度为:O(26)*2 == O(1) 
+
+        '''
+        m1 = len(s1)
+        m2 = len(s2)
+        if m1 > m2:
+            return False
+        dic1 = [0]*26
+        dic2 = [0]*26
+        for i in range(m1):
+            dic1[ord(s1[i])-ord('a')] += 1
+            dic2[ord(s2[i])-ord('a')] += 1
+        
+        if dic1 == dic2:
+            return True
+
+        for i in range(m1,m2):
+            dic2[ord(s2[i-m1])-ord('a')] -= 1
+            dic2[ord(s2[i])-ord('a')] += 1
+            if dic1 == dic2:
+                return True
+        return False
+```
+
+## [105. 从前序与中序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        if not preorder and not inorder: return None
+        root = TreeNode(preorder[0])
+        m = inorder.index(preorder[0])
+
+        root.left= self.buildTree(preorder[1:m+1],inorder[:m])
+        root.right = self.buildTree(preorder[m+1:],inorder[m+1:])
+        return root
+```
+
+## [61. 旋转链表](https://leetcode.cn/problems/rotate-list/)
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        def calculateLen(head):
+            n=1
+            while head.next:
+                n+=1
+                head = head.next
+            return n
+
+        if k==0 or not head or not head.next:
+            return head
+
+        n = calculateLen(head)
+        k=k%n
+        fast = slow = head
+        
+        for i in range (k):
+            fast = fast.next
+        
+        while fast.next:
+            fast = fast.next
+            slow = slow.next
+
+        fast.next = head
+        head = slow.next
+        slow.next = None
+        
+        return head
 ```
