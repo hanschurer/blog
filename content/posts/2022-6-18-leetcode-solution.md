@@ -1262,3 +1262,41 @@ class Solution:
         root.right = self.buildTree(preorder[m+1:],inorder[m+1:])
         return root
 ```
+
+## [61. 旋转链表](https://leetcode.cn/problems/rotate-list/)
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        def calculateLen(head):
+            n=1
+            while head.next:
+                n+=1
+                head = head.next
+            return n
+
+        if k==0 or not head or not head.next:
+            return head
+
+        n = calculateLen(head)
+        k=k%n
+        fast = slow = head
+        
+        for i in range (k):
+            fast = fast.next
+        
+        while fast.next:
+            fast = fast.next
+            slow = slow.next
+
+        fast.next = head
+        head = slow.next
+        slow.next = None
+        
+        return head
+```
