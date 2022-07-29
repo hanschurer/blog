@@ -56,17 +56,11 @@ JS数据类型分为两类：一类是基本数据类型，也叫简单数据类
 
 </details>
 
-
-
 ## 手写防抖和节流
 
 <details><summary>展开/收起</summary>
 
-
-
 </details>
-
-
 
 ## 说一说Promise是什么与使用方法？
 
@@ -82,17 +76,11 @@ Promise的特点： 1. 对象的状态不受外界影响（Promise对象代表�
 
 </details>
 
-
-
 ## 手写Promise
 
 <details><summary>展开/收起</summary>
 
-
-
 </details>
-
-
 
 ## 说一说跨域是什么？如何解决跨域问题？
 
@@ -127,8 +115,6 @@ postmessage：H5新增API，通过发送和接收API实现跨域通信。\
 
 </details>
 
-
-
 ## 说一说BFC
 
 <details><summary>展开/收起</summary>
@@ -143,7 +129,6 @@ BFC 全称为 block formatting context，中文为“块级格式化上下文”
 
 **触发 BFC 的常见条件**
 
-* <html> 根元素。
 * float 的值不为 none。
 * position 的值不为 relative 或 static。
 * overflow 的值不为 visible 或 clip（除了根元素）。
@@ -158,8 +143,6 @@ BFC 全称为 block formatting context，中文为“块级格式化上下文”
 
 </details>
 
-
-
 ## 说一说JavaScript有几种方法判断变量的类型？
 
 <details><summary>展开/收起</summary>
@@ -172,8 +155,6 @@ BFC 全称为 block formatting context，中文为“块级格式化上下文”
 
 </details>
 
-
-
 ## 说一说样式优先级的规则是什么？
 
 <details><summary>展开/收起</summary>
@@ -183,8 +164,6 @@ BFC 全称为 block formatting context，中文为“块级格式化上下文”
 标准回答 CSS样式的优先级应该分成四大类 -第一类\`!important\`，无论引入方式是什么，选择器是什么，它的优先级都是最高的。 -第二类引入方式，行内样式的优先级要高于嵌入和外链，嵌入和外链如果使用的选择器相同就看他们在页面中插入的顺序，在后面插入的会覆盖前面的。 -第三类选择器，选择器优先级：id选择器>（类选择器 | 伪类选择器 | 属性选择器 ）> （后代选择器 | 伪元素选择器 ）> （子选择器 | 相邻选择器） > 通配符选择器 。 -第四类继承样式，是所有样式中优先级比较低的。 -第五类浏览器默认样式优先级最低。 加分回答 使用!important要谨慎 - 一定要优先考虑使用样式规则的优先级来解决问题而不是 \`!important\` - 只有在需要覆盖全站或外部 CSS 的特定页面中使用 \`!important\` - 永远不要在你的插件中使用 \`!important\` - 永远不要在全站范围的 CSS 代码中使用 \`!important\` 优先级的比较指的是相同的样式属性，不同样式属性优先级比较失效，比如：在设置\`max-width\`时注意，已经给元素的\`max-width\`设置了\`!important\`但是还不生效，很有可能就是被width覆盖了 举例：\`div\`最终的宽度还是\`200px\` div { max-width: 400px !important; height: 200px;background-color: tomato; width: 200px; }
 
 </details>
-
-
 
 ## 说一说数组去重都有哪些方法？
 
@@ -196,8 +175,6 @@ BFC 全称为 block formatting context，中文为“块级格式化上下文”
 
 </details>
 
-
-
 ## 说一说es6中箭头函数？
 
 <details><summary>展开/收起</summary>
@@ -207,8 +184,6 @@ BFC 全称为 block formatting context，中文为“块级格式化上下文”
 标准回答 箭头函数相当于匿名函数，简化了函数定义。箭头函数有两种写法，当函数体是单条语句的时候可以省略{}和return。另一种是包含多条语句，不可以省略{}和return。 箭头函数最大的特点就是没有this，所以this是从外部获取，就是继承外部的执行上下文中的this，由于没有this关键字所以箭头函数也不能作为构造函数， 同时通过 \`call()\` 或 \`apply()\` 方法调用一个函数时，只能传递参数（不能绑定this），第一个参数会被忽略。箭头函数也没有原型和super。不能使用yield关键字，因此箭头函数不能用作 Generator 函数。不能返回直接对象字面量。 加分回答 箭头函数的不适用场景： -定义对象上的方法 当调用\` dog.jumps\` 时，\`lives\` 并没有递减。因为 \`this\` 没有绑定值，而继承父级作用域。 var dog = { lives: 20, jumps: () => { this.lives--; } } -不适合做事件处理程序 此时触发点击事件，this不是button，无法进行class切换 var button = document.querySelector('button'); button.addEventListener('click', () => { this.classList.toggle('on'); }); 箭头函数函数适用场景： -简单的函数表达式，内部没有this引用，没有递归、事件绑定、解绑定，适用于map、filter等方法中，写法简洁 var arr = \[1,2,3]; var newArr = arr.map((num)=>num*num) -内层函数表达式，需要调用this，且this应与外层函数一致时 let group = { title: "Our Group", students: \["John", "Pete", "Alice"], showList() { this.students.forEach( student => alert(this.title + ': ' + student) ); } }; group.showList();
 
 </details>
-
-
 
 ## 说一说事件循环Event loop，宏任务与微任务？
 
